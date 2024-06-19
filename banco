@@ -1,0 +1,26 @@
+CREATE DATABASE sistema_viagens;
+
+USE sistema_viagens;
+
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_usuario VARCHAR(255) NOT NULL,
+    senha VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE viagens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    destino VARCHAR(255) NOT NULL,
+    data_inicio DATE NOT NULL,
+    data_termino DATE NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+
+CREATE TABLE atividades (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    viagem_id INT NOT NULL,
+    descricao TEXT NOT NULL,
+    data_atividade DATE,
+    FOREIGN KEY (viagem_id) REFERENCES viagens(id)
+);
